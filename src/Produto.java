@@ -9,40 +9,37 @@
  * @author KaioT
  */
 public class Produto {
-    private int quantidade;
-    private String id_produto;
-    private String nome_produto;
+    private String idProduto;
+    private String nomeProduto;
     private float preço;
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public String getId_produto() {
-        return id_produto;
-    }
-
-    public void setId_produto(String id_produto) {
-        this.id_produto = id_produto;
-    }
-
-    public String getNome_produto() {
-        return nome_produto;
-    }
-
-    public void setNome_produto(String nome_produto) {
-        this.nome_produto = nome_produto;
-    }
 
     public float getPreço() {
         return preço;
     }
 
     public void setPreço(float preço) {
+        this.preço = preço;
+    }
+
+    public String getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(String idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public Produto(String idProduto, String nomeProduto, float preço) {
+        this.idProduto = idProduto;
+        this.nomeProduto = nomeProduto;
         this.preço = preço;
     }
 }

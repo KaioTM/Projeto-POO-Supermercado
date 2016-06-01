@@ -12,7 +12,7 @@ public class Menu extends JFrame {
 		Menu inicial = new Menu();
 		opcao1 = new JButton("Controlar estoque");
 		opcao2 = new JButton("Efetuar venda");
-		opcao3 = new JButton("Relatórios");
+		opcao3 = new JButton("RelatÃ³rios");
 		
 		inicial.setLayout(new FlowLayout(FlowLayout.LEFT));
 		inicial.add(opcao1);

@@ -1,59 +1,77 @@
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
  * @author KaioT
  */
 public class Estoque {
-    public ArrayList<Produto> estoque = new ArrayList<Produto>();
+    public static ArrayList<Item> estoque = new ArrayList<Item>();
     
-    public static void insereProduto(ArrayList<Produto> estoque,javax.swing.JTextField id_produto,javax.swing.JTextField nome_produto){
-        Produto produto_criado = new Produto();
-        
-        produto_criado.setId_produto(id_produto.getText());
-        produto_criado.setNome_produto(nome_produto.getText()); 
-        
-        estoque.add(produto_criado);
-        if (estoque.add(produto_criado) == true){
-           JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso"); 
+    public static void insereProduto(String id,String nome,Float preço,int quantidadeInserida){
+        Produto produtoCriado = new Produto(id,nome,preço);
+        Item itemCriado = new Item(produtoCriado,quantidadeInserida);
+        if (estoque.isEmpty()){
+            if (estoque.add(itemCriado) == true){
+               JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso"); 
+            }else{
+               JOptionPane.showMessageDialog(null,"Não Foi possível cadastrar"); 
+            }        
         }else{
-           JOptionPane.showMessageDialog(null,"Não Foi possível cadastrar");
+            for (int i=0;i<estoque.size();i++){           
+                if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(id)){
+                    estoque.get(i).setQuantidade(estoque.get(i).getQuantidade()+quantidadeInserida);
+                }else{
+                    if (estoque.add(itemCriado) == true){
+                       JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso"); 
+                    }else{
+                       JOptionPane.showMessageDialog(null,"Não Foi possível cadastrar");
+                    }   
+                }
+            }
         }
-            
         
     }
-    
-    // Lembrar de Construir este método!
-    public static void retiraProduto(ArrayList<Produto> estoque,javax.swing.JTextField id_produto,javax.swing.JTextField nome_produto){
-        Produto produto_criado = new Produto();
-        
-        produto_criado.setId_produto(id_produto.getText());
-        produto_criado.setNome_produto(nome_produto.getText()); 
-        
-        estoque.add(produto_criado);
-        JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso");
+    // Falta tratar quando o produto não é encontrado
+    public static void consultaProduto (String idProduto){
+        int i;
+        //Produto produtoConsultado = new Produto();
+            for (i=0;i<Estoque.estoque.size();i++){
+                if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(idProduto)){
+                    System.out.print("ID: ");
+                    System.out.println(estoque.get(i).getProduto().getIdProduto());
+                    System.out.print("Nome do produto: ");
+                    System.out.println(estoque.get(i).getProduto().getNomeProduto());
+                    System.out.print("Preço: R$");
+                    System.out.println(estoque.get(i).getProduto().getPreço());
+                    System.out.print("Quantidade: ");
+                    System.out.println(estoque.get(i).getQuantidade());
+                }else{
+                    System.out.print("Produto não encontrado.");
+                }
+            }
     }
     
-    public static void consultaProduto(ArrayList<Produto> estoque,javax.swing.JTextField id_produto,javax.swing.JTextField nome_produto){
-        Produto produto_criado = new Produto();
+    public static void retiraProduto(String nomeProduto,int quantidadeSolicitada){
+        int i; 
         
-        produto_criado.setId_produto(id_produto.getText());
-        produto_criado.setNome_produto(nome_produto.getText()); 
-        
-        estoque.add(produto_criado);
-        JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso");
-    }
-    
-    
+        if (estoque.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Produto não encontrado");
+        }else{
+            for (i=0;i<Estoque.estoque.size();i++){
+                if (estoque.get(i).getProduto().getNomeProduto().equalsIgnoreCase(nomeProduto)){
+                    if(estoque.get(i).getQuantidade() == quantidadeSolicitada){
+                       estoque.remove(estoque.get(i)); 
+                    }else{
+                        estoque.get(i).setQuantidade(estoque.get(i).getQuantidade() - quantidadeSolicitada);
+                    }
+                        
+                    JOptionPane.showMessageDialog(null,"Retirado com Sucesso");
+                }else{
+                    JOptionPane.showMessageDialog(null,"Produto não encontrado");
+                }
+            }
+        }
+                    
+    }  
 }
-
-
-
