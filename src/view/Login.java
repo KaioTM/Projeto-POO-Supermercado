@@ -1,3 +1,5 @@
+package view;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -120,7 +122,7 @@ public class Login extends javax.swing.JFrame{
 					if(jTextField2.getText().equals("admin") && jPasswordField1.getText().equals("123")){
                                             JOptionPane.showMessageDialog(null, "Logado com sucesso.");
                                             this.dispose();
-                                            Menu_init.init();
+                                            MenuInicial.init();
                                                 
 					}else{
 						JOptionPane.showMessageDialog(null, "Usuário ou Senha inválida");

@@ -9,7 +9,7 @@ public class Venda extends JFrame {
 	
 	public static void realizar_venda(){
 		
-		//Criação da Janela
+		//CriaÃ§Ã£o da Janela
 		Venda janela_venda = new Venda();
 		janela_venda.setLayout(new FlowLayout(FlowLayout.LEFT));
 		janela_venda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,7 +18,7 @@ public class Venda extends JFrame {
 		janela_venda.setResizable(false);
 		janela_venda.setLocationRelativeTo(null);
 		
-		//Criação das Labels
+		//CriaÃ§Ã£o das Labels
 		label_pagar = new JLabel("Valor a pagar: ");
 		janela_venda.add(label_pagar);
 		
