@@ -42,6 +42,8 @@ public class Estoque {
         //Produto produtoConsultado = new Produto();
             for (i=0;i<Estoque.estoque.size();i++){
                 if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(idProduto)){
+                    view.ConsultarProduto.fldProdutoConsultado.(estoque.get(i).getProduto().getIdProduto());
+                    
                     System.out.print("ID: ");
                     System.out.println(estoque.get(i).getProduto().getIdProduto());
                     System.out.print("Nome do produto: ");
