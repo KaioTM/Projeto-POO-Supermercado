@@ -14,14 +14,14 @@ import object.Produto;
  * @author kaio.teixeira
  */
 public class Item {
-
+    private Produto produto;
+    private int quantidade;
+    
     public Item(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
-    private Produto produto;
-    private int quantidade;
-
+   
     public Produto getProduto() {
         return produto;
     }
