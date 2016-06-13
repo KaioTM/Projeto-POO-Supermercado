@@ -39,7 +39,10 @@ public class Estoque {
     // Falta tratar quando o produto não é encontrado
     public static void consultaProduto (String idProduto){
         int i;
-        //Produto produtoConsultado = new Produto();
+        
+        if (estoque.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Produto não encontrado");
+        }else{
             for (i=0;i<Estoque.estoque.size();i++){
                 if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(idProduto)){
                     System.out.print("ID: ");
@@ -54,16 +57,17 @@ public class Estoque {
                     System.out.print("Produto não encontrado.");
                 }
             }
+        }
     }
     
-    public static void retiraProduto(String nomeProduto,int quantidadeSolicitada){
+    public static void retiraProduto(String idProduto,int quantidadeSolicitada){
         int i; 
         
         if (estoque.isEmpty()){
             JOptionPane.showMessageDialog(null,"Produto não encontrado");
         }else{
             for (i=0;i<Estoque.estoque.size();i++){
-                if (estoque.get(i).getProduto().getNomeProduto().equalsIgnoreCase(nomeProduto)){
+                if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(idProduto)){
                     if(estoque.get(i).getQuantidade() == quantidadeSolicitada){
                        estoque.remove(estoque.get(i)); 
                     }else{
