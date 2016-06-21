@@ -51,8 +51,17 @@ public class Estoque {
         
     
     // Falta tratar quando o produto não é encontrado
+<<<<<<< HEAD
     public static String consultaProduto (String idProduto){
         int i;      
+=======
+    public static void consultaProduto (String idProduto){
+        int i;
+        
+        if (estoque.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Produto não encontrado");
+        }else{
+>>>>>>> refs/remotes/origin/master
             for (i=0;i<Estoque.estoque.size();i++){
                 if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(idProduto)){            
                     return ("ID: "+estoque.get(i).getProduto().getIdProduto()+
@@ -74,17 +83,21 @@ public class Estoque {
                 }else{   
                 }
             }
+<<<<<<< HEAD
             return ("Produto não encontrado.");
+=======
+        }
+>>>>>>> refs/remotes/origin/master
     }
     
-    public static void retiraProduto(String nomeProduto,int quantidadeSolicitada){
+    public static void retiraProduto(String idProduto,int quantidadeSolicitada){
         int i; 
         
         if (estoque.isEmpty()){
             JOptionPane.showMessageDialog(null,"Produto não encontrado");
         }else{
             for (i=0;i<Estoque.estoque.size();i++){
-                if (estoque.get(i).getProduto().getNomeProduto().equalsIgnoreCase(nomeProduto)){
+                if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(idProduto)){
                     if(estoque.get(i).getQuantidade() == quantidadeSolicitada){
                        estoque.remove(estoque.get(i)); 
                     }else{
