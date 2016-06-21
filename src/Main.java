@@ -1,4 +1,5 @@
 
+import data.Programa;
 import javax.swing.JFrame;
 import java.awt.*;
 import javax.swing.*;
@@ -7,10 +8,10 @@ import view.*;
 public class Main {
 
     public static void main(String[] args) {
-        
+                  Programa.carregaPrograma();
 		  Login login = new Login();
 		  login.setVisible(true);
-
+                  //Programa.salvaPrograma();
         
 
 //                  data.Estoque.insereProduto("1","Banana",8.00F,5);

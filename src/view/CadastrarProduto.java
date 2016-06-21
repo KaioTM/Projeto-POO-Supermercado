@@ -5,6 +5,8 @@
  */
 package view;
 
+import data.Estoque;
+
 /**
  *
  * @author kaio.teixeira
@@ -39,6 +41,14 @@ public class CadastrarProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblIdProduto.setText("Id do Produto:");
 
@@ -111,9 +121,18 @@ public class CadastrarProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         data.Estoque.insereProduto(txtIdProduto.getText(), txtNomeProduto.getText(),Float.parseFloat(txtPreco.getText()),Integer.parseInt(txtQuantidade.getText()) );
         this.dispose();
-        
+        //Estoque.salvaEstoque();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        Estoque.salvaEstoque();
+    }//GEN-LAST:event_formWindowClosed
     /**
      * @param args the command line arguments
      */

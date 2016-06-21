@@ -1,5 +1,10 @@
 package data;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import object.Item;
 import object.Produto;
 import java.util.ArrayList;
@@ -10,32 +15,41 @@ import javax.swing.JOptionPane;
  * @author KaioT
  */
 public class Estoque {
-    public static ArrayList<Item> estoque = new ArrayList<Item>();
+    public static ArrayList<Item> estoque = new ArrayList();
     
     public static void insereProduto(String id,String nome,Float preço,int quantidadeInserida){
         Produto produtoCriado = new Produto(id,nome,preço);
         Item itemCriado = new Item(produtoCriado,quantidadeInserida);
+        boolean itemAtualizado = false;
         if (estoque.isEmpty()){
             if (estoque.add(itemCriado) == true){
-               JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso"); 
+               JOptionPane.showMessageDialog(null,"Produto cadastrado com Sucesso");
+               itemAtualizado = true;
+                
             }else{
-               JOptionPane.showMessageDialog(null,"Não Foi possível cadastrar"); 
+               JOptionPane.showMessageDialog(null,"Não Foi possível cadastrar o produto"); 
             }        
         }else{
+            
             for (int i=0;i<estoque.size();i++){           
                 if (estoque.get(i).getProduto().getIdProduto().equalsIgnoreCase(id)){
-                    estoque.get(i).setQuantidade(estoque.get(i).getQuantidade()+quantidadeInserida);
-                }else{
-                    if (estoque.add(itemCriado) == true){
-                       JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso"); 
-                    }else{
-                       JOptionPane.showMessageDialog(null,"Não Foi possível cadastrar");
-                    }   
-                }
+                    itemAtualizado = estoque.get(i).setQuantidade(estoque.get(i).getQuantidade()+quantidadeInserida);
+                    JOptionPane.showMessageDialog(null,"Produto atualizado com sucesso");
+                    break;          
+                }       
             }
-        }
-        
+            if (itemAtualizado == false){
+                estoque.add(itemCriado); 
+                JOptionPane.showMessageDialog(null,"Produto cadastrado com Sucesso");
+            }
+                        
+                     
+        }         
+            
+            
     }
+        
+    
     // Falta tratar quando o produto não é encontrado
     public static String consultaProduto (String idProduto){
         int i;      
@@ -84,5 +98,46 @@ public class Estoque {
             }
         }
                     
-    }  
+    }
+    
+     public static void carregaEstoque(){
+            
+        try
+      {
+         FileInputStream fileIn = new FileInputStream("C:\\Users\\KaioT\\Desktop\\dados\\estoque.ser");
+         ObjectInputStream in = new ObjectInputStream(fileIn);
+         Estoque.estoque = (ArrayList) in.readObject();
+         in.close();
+         fileIn.close();
+         System.out.println("Estoque Carregado");
+      }catch(IOException i)
+      {
+         i.printStackTrace();
+         return;
+      }catch(ClassNotFoundException c)
+      {
+         System.out.println("ArrayList not found");
+         c.printStackTrace();
+         return;
+      }
+
+    }
+     
+     public static void salvaEstoque (){
+            
+        try{
+                 FileOutputStream fileOut = new FileOutputStream("C:\\Users\\KaioT\\Desktop\\dados\\estoque.ser");
+                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                 out.writeObject(Estoque.estoque);
+                 out.close();
+                 fileOut.close();
+                 System.out.printf("Serialized data is saved in C:\\Users\\KaioT\\Desktop\\dados\\estoque.ser");
+               }catch(IOException i){
+                  i.printStackTrace();
+                }
+    }
+  
+//    public static String consultaEstoque (){
+//        Estoque.estoque.
+//    }
 }

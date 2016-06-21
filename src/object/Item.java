@@ -1,6 +1,7 @@
 package object;
 
 
+import java.io.Serializable;
 import object.Produto;
 
 /*
@@ -13,7 +14,7 @@ import object.Produto;
  *
  * @author kaio.teixeira
  */
-public class Item {
+public class Item implements Serializable {
     private Produto produto;
     private int quantidade;
     
@@ -34,7 +35,8 @@ public class Item {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public boolean setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+        return true;
     }
 }
